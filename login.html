@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="w-50 mx-auto">
+    <div class="container mt-4">
+        <h1 class="text-center  border-danger mb-4">Login</h1> 
+        <form id="formulario" action="#" method="post">
+            <fieldset>
+                <div class="row">
+                    <div class="row mt-3">
+                    <div class="col-12">
+                        <label for="login" class="form-label">Login</label>
+                        <input type="text" class="form-control" name="login" id="login" required>
+                    </div>
+                </div>
+                <div  class="row mt-3">
+                    <div class="col-12">
+                        <label for="senha" class="form-label">Senha</label>
+                        <input type="password" class="form-control" name="senha" id="senha" required>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12 d-flex justify-content-end mt-3">
+                        <button type="button" class="btn btn-success" onclick="autenticar()">Entrar</button>
+                    </div>
+                </div>
+            </div>
+            </fieldset>
+        </form>
+    </div>
+
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/usuario.js"></script>
+    <script src="js/login.js"></script>
+</body>
+</html>

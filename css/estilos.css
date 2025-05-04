@@ -1,0 +1,44 @@
+.menu-container {
+	max-width: 400px;
+	margin: 50px auto;
+	text-align: center;
+}
+.menu-container h2 {
+	margin-bottom: 20px;
+}
+.menu-btn {
+	width: 100%;
+	margin-bottom: 10px;
+}
+
+#cabecalho {
+	grid-area: cabecalho;
+	background-color: black;
+
+	display: grid;
+	grid-template-areas: "compra opcoes";
+	justify-content: space-between;
+	padding: 14px;
+}
+
+#compra {
+	grid-area: compra;
+}
+
+#opcoes {
+	grid-area: opcoes;
+}
+
+a { 
+	font-weight: bold;
+	color: white;
+	text-decoration: none;
+}
+
+#compra a {
+	padding-right: 10px;
+}
+
+#opcoes a {
+	padding-right: 10px;
+}

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <title>Alerta</title>
+</head>
+
+<body>
+    <div class="container mt-4">
+        <div id="cabecalho">
+            <div id="compra">
+                <a href="compra.html">Minha Compra</a>
+            </div>
+            <div id="opcoes">
+                <a href="menu.html">Menu</a>
+                <a href="login.html">Sair</a>
+            </div>
+        </div>
+
+        <h1 class="text-center border-bottom border-danger mb-4">Cadastro de Alerta</h1>
+
+        <form id="formulario" action="#" method="post">
+            <fieldset>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <select name="produto" id="produto" class="form-select" required>
+                            <option value="" disabled selected>Selecione um Produto</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col-12">
+                        <label for="valor" class="form-label">Valor</label>
+                        <input type="number" class="form-control" name="valor" id="valor" required>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12">
+                        <label for="acao" class="form-label">Ação</label>
+                        <select name="acao" id="acao" class="form-select" required>
+                            <option value="" selected disabled>Selecione uma Ação</option>
+                            <option value="notificar">Notificar</option>
+                            <option value="comprar">Comprar</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-12 d-flex justify-content-end">
+                        <button type="button" class="btn btn-success" onclick="cadastrar()">Cadastrar</button>
+                    </div>
+                </div>
+            </fieldset>
+        </form>
+
+        <table id="tabela" class="table mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Produto</th>
+                    <th>Valor</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+
+    <script src="js/bootstrap.js"></script>
+    <script src="js/alerta.js"></script>
+</body>
+
+</html>
