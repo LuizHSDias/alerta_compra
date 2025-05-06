@@ -16,6 +16,15 @@ function cadastrar() {
     return;
   }
 
+  let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
+  let chaveAlertas = "alertas_" + usuario.chave;
+  let alertas = JSON.parse(localStorage.getItem(chaveAlertas)) || [];
+
+  if (alertas.some(a => a.produto === produtoSelecionado.id)) {
+    alert("Já existe um alerta para esse produto.");
+    return;
+  }
+
   let novoAlerta = {
     produto: produtoSelecionado.id,
     descricao: produtoSelecionado.descricao,
@@ -23,15 +32,8 @@ function cadastrar() {
     acao: acao
   };
 
-  let alertas = JSON.parse(localStorage.getItem("alertas")) || [];
-
-  if (alertas.some(a => a.produto === novoAlerta.produto)) {
-    alert("Já existe um alerta para esse produto.");
-    return;
-  }
-
   alertas.push(novoAlerta);
-  localStorage.setItem("alertas", JSON.stringify(alertas));
+  localStorage.setItem(chaveAlertas, JSON.stringify(alertas));
   exibirTabela();
   alert("Alerta cadastrado com sucesso!");
 }
@@ -67,7 +69,9 @@ function exibirTabela() {
   let tbody = tabela.querySelector("tbody");
   tbody.innerHTML = "";
 
-  let alertas = JSON.parse(localStorage.getItem("alertas")) || [];
+  let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
+  let chaveAlertas = "alertas_" + usuario.chave;
+  let alertas = JSON.parse(localStorage.getItem(chaveAlertas)) || [];
 
   alertas.forEach(alerta => {
     let linha = document.createElement("tr");
@@ -89,15 +93,17 @@ function exibirTabela() {
 }
 
 async function verificarAlertas() {
-  let alertas = JSON.parse(localStorage.getItem("alertas")) || [];
   let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
   if (!usuario || !usuario.chave) {
     console.error("Usuário não autenticado.");
     return;
   }
 
-  let chave = "compras_" + usuario.chave;
-  let compras = JSON.parse(localStorage.getItem(chave)) || [];
+  let chaveAlertas = "alertas_" + usuario.chave;
+  let chaveCompras = "compras" + usuario.chave;
+
+  let alertas = JSON.parse(localStorage.getItem(chaveAlertas)) || [];
+  let compras = JSON.parse(localStorage.getItem(chaveCompras)) || [];
   let alertasRestantes = [];
   let formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
 
@@ -119,7 +125,7 @@ async function verificarAlertas() {
             valor: valorAtual
           };
           compras.push(novaCompra);
-          localStorage.setItem(chave, JSON.stringify(compras));
+          localStorage.setItem(chaveCompras, JSON.stringify(compras));
           alert(`Compra registrada: "${produto.descricao}" por ${formatter.format(valorAtual)}`);
         }
       } else {
@@ -131,8 +137,24 @@ async function verificarAlertas() {
     }
   }
 
-  localStorage.setItem("alertas", JSON.stringify(alertasRestantes));
+  localStorage.setItem(chaveAlertas, JSON.stringify(alertasRestantes));
   exibirTabela();
+}
+
+function salvarCompra(descricao, valor) {
+  let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
+
+  if (!usuario || !usuario.chave) {
+    alert("Usuário não autenticado.");
+    return;
+  }
+
+  let chaveUsuario = "compras" + usuario.chave;
+  let compras = JSON.parse(localStorage.getItem(chaveUsuario)) || [];
+
+  compras.push({ descricao: descricao, valor: valor });
+
+  localStorage.setItem(chaveUsuario, JSON.stringify(compras));
 }
 
 window.onload = function () {
