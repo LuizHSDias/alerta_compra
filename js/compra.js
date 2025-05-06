@@ -7,21 +7,10 @@ function exibirCompras() {
       return;
     }
   
-    let compras = JSON.parse(localStorage.getItem("compras" + usuario.chave));
+    let compras = JSON.parse(localStorage.getItem("compras_" + usuario.chave)) || [];
   
     let tbody = document.getElementById("tabela-compras");
     tbody.innerHTML = "";
-  
-    if (compras.length === 0) {
-      let linha = document.createElement("tr");
-      let td = document.createElement("td");
-      td.colSpan = 2;
-      td.textContent = "Nenhuma compra registrada.";
-      td.classList.add("text-center");
-      linha.appendChild(td);
-      tbody.appendChild(linha);
-      return;
-    }
   
     compras.forEach(compra => {
       let linha = document.createElement("tr");

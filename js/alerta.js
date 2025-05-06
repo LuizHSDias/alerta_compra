@@ -96,7 +96,7 @@ async function verificarAlertas() {
     return;
   }
 
-  let chave = "compras" + usuario.chave;
+  let chave = "compras_" + usuario.chave;
   let compras = JSON.parse(localStorage.getItem(chave)) || [];
   let alertasRestantes = [];
   let formatter = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -133,22 +133,6 @@ async function verificarAlertas() {
 
   localStorage.setItem("alertas", JSON.stringify(alertasRestantes));
   exibirTabela();
-}
-
-function salvarCompra(descricao, valor) {
-  let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
-
-  if (!usuario || !usuario.chave) {
-    alert("Usuário não autenticado.");
-    return;
-  }
-
-  let chaveUsuario = "compras" + usuario.chave;
-  let compras = JSON.parse(localStorage.getItem(chaveUsuario)) || [];
-
-  compras.push({ descricao: descricao, valor: valor });
-
-  localStorage.setItem(chaveUsuario, JSON.stringify(compras));
 }
 
 window.onload = function () {
