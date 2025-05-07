@@ -3,7 +3,7 @@ function exibirCompras() {
 
   if (!usuario || !usuario.chave) {
     alert("Usuário não autenticado.");
-    window.location.href = "login.html";
+    window.location.href = "index.html";
     return;
   }
 
