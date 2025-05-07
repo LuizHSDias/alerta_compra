@@ -3,7 +3,7 @@ let usuario = JSON.parse(localStorage.getItem("usuarioAutenticado"));
 if (usuario) {
     document.getElementById("boasVindas").textContent = `Bem-vindo, ${usuario.nome}`;
 } else {
-    window.location.href = "login.html"; 
+    window.location.href = "index.html"; 
 }
 
 function alerta() {
@@ -15,5 +15,5 @@ function compra() {
 }
 
 function sair(){
-    window.location.href = "login.html";
+    window.location.href = "index.html";
 }
